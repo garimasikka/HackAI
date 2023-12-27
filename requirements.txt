@@ -3,6 +3,7 @@ twilio
 python-dotenv
 transformers
 tensorflow
+tensorflow
 torch
 openai
 pandas
