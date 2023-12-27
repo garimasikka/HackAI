@@ -23,12 +23,9 @@ git clone https://github.com/garimasikka/HackAI.git
 ```
 To install the package, run the follwing command:
 ```bash
-pip install -r requirments.txt
+pip install -r requirements.txt
 ```
-To run the application, use the following commands:
-```bash
-python ./src/ main.py
-```
+
 Generate your API key using this link:
 
  - OpenAPI: [create API Key](https://www.alphavantage.co/support/#api-key)
@@ -43,6 +40,14 @@ twilio_number= <twilio phone number>
 target_number= <any target phone number with country code>
 OPENAI_API_KEY= <openai api>
 ```
+
+To run the application, use the following commands:
+```bash
+pip install openai==0.28
+python main.py
+```
+
+It will take a few minutes to download the models.
 
 ## Getting Started
 
@@ -75,7 +80,7 @@ When you navigate to a subscription page, add the following details:
 A user gets notifications on phone for the following reasons:
 - When the price of a product in the wishlist gets discounted.
 - When the unavailable product in the wishlist becomes available.
-- 
+ 
 <img src="./images/rem.jpg" alt="message" width="200"/> <img src="./images/rem2.jpg" alt="message" width="200"/>
 
 # Scope of Improvement
