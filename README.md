@@ -23,11 +23,11 @@ git clone https://github.com/garimasikka/HackAI.git
 ```
 To install the package, run the follwing command:
 ```bash
-pip install -r requirments.txt
+pip install -r requirements.txt
 ```
 To run the application, use the following commands:
 ```bash
-python ./src/ main.py
+python main.py
 ```
 Generate your API key using this link:
 
