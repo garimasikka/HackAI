@@ -43,6 +43,7 @@ OPENAI_API_KEY= <openai api>
 
 To run the application, use the following commands:
 ```bash
+pip install openai==0.28
 python main.py
 ```
 
