@@ -29,9 +29,10 @@ def get_data():
         response3 = requests.get("https://weak-ruby-rhinoceros-slip.cyclic.app/api/subscriptions") 
         response3.raise_for_status()
         subscriptions = response3.json()["products"]
-        return wishlist_products, products_list, subscriptions
     except:
         subscriptions = []
+    return wishlist_products, products_list, subscriptions
+      
 
 try:
     _, _, subscriptions = get_data()

@@ -8,6 +8,8 @@ from flask import Flask, jsonify, request, make_response
 from flask_restful import Api, Resource
 import os
 
+from main import get_data
+
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 app = Flask(__name__)
 api = Api(app)
@@ -25,7 +27,29 @@ def analyze_sentiment(text):
     prediction = sentiment_classifier(text)
     return prediction[0]
 
-
+def sentiment_analysis(): 
+    all_reviews = {}
+    total_pos = {}
+    if get_data():
+        _, products_list, _ = get_data()
+        print(products_list)
+        for product in products_list:
+            total_pos[product["_id"]] = 0
+            all_reviews[product["_id"]] = []
+            for review in product["reviews"]:
+                sentiment = analyze_sentiment(review)
+                max_score = 0
+                pred_sentiment = ""
+                for i in sentiment:
+                    if i["score"] > max_score:
+                        max_score = i["score"] 
+                        pred_sentiment = i["label"]
+                if pred_sentiment=="positive":
+                    total_pos[product["_id"]]+=1
+                all_reviews[product["_id"]].append(pred_sentiment)
+        print(total_pos)
+        return total_pos
+    
 def get_openai_response(user_message, OPENAI_API_KEY=OPENAI_API_KEY):
     """
     Get a response from OpenAI's language model based on the user message.
@@ -123,8 +147,8 @@ client = chromadb.Client()
 
 # Load data
 def load_data():
-    products = pd.read_excel("/content/products.xlsx", header=0)
-    reviews = pd.read_excel("/content/ratings.xlsx", header=0)
+    products = pd.read_excel("./products.xlsx", header=0)
+    reviews = pd.read_excel("./ratings.xlsx", header=0)
     return products, reviews
 
 # Top N products
@@ -144,11 +168,11 @@ def score(comments):
 # Transform database
 def transform_db(products, reviews):
     df = pd.merge(reviews, products, how="left", on=['product_id'])
-    df = df[['product_id', 'comment', 'rating', 'brand', 'product_type', 'color']]
+    df = df[['product_id', 'comment', 'rating', 'brand', 'product_code', 'color']]
     df = df.groupby(['product_id']).aggregate({
         'comment': lambda x: x,
         'brand': lambda x: ', '.join(set(x)),
-        'product_type': lambda x: ', '.join(set(x)),
+        'product_code': lambda x: ', '.join(set(x)),
         'color': lambda x: ', '.join(set(x))
     })
     df.comment = df['comment'].apply(score)
@@ -156,6 +180,47 @@ def transform_db(products, reviews):
 
 # Get recommendations
 def get_recommendations(brand, product_code, color, comments, n=3):
+    p = []
+    embeddings = []
+    gender = {
+        'M': 'male',
+        'F': 'female',
+        'U': 'unisex'
+    }
+    size = {
+        'O': 'onesize',
+        'S': 'small',
+        'M': 'medium',
+        'L': 'large'
+    }
+    product_type = {
+        '0': 'jeans',
+        '1': 'shoes',
+        '2': 'shirts',
+        '3': 'accessories',
+        '4': 'dress'
+    }
+    products, reviews = load_data()
+    new_db = transform_db(products, reviews)
+    for idx in range(new_db.shape[0]):
+        p.append(str(idx))
+        data = new_db.iloc[idx]['brand'] + gender[new_db.iloc[idx]['product_code'][0]] + \
+                size[new_db.iloc[idx]['product_code'][1]] + product_type[new_db.iloc[idx]['product_code'][-1]] + \
+                new_db.iloc[idx]['color']
+        embeddings.append(list(model.encode(data).astype('float')+[new_db.iloc[idx]['comment']]))
+
+    products_collection = client.create_collection(name="products",
+                                      metadata={"hnsw:space": "cosine"})
+    
+    products_collection.add(
+        embeddings=embeddings,
+        ids=p
+    )
+    
+    distilled_student_sentiment_classifier = pipeline(
+        model="lxyuan/distilbert-base-multilingual-cased-sentiments-student",
+        return_all_scores=True
+    )
     data = brand + gender[product_code[0]] + size[product_code[1]] + product_type[product_code[2]] + color
     s = 0
     for comment in comments:
@@ -175,8 +240,18 @@ class Get_Data(Resource):
         return make_response(jsonify(data))
     
 class Recommendation(Resource):
-    pass
-
+    def post(self):
+        data=request.get_json()
+        res = get_recommendations(data['brand'], data['product_code'], data['color'], data['comments'])
+        return make_response(jsonify({'product_id': res}))
+    
+    
+class Sentiment(Resource):
+    def get(self):
+        res = sentiment_analysis()
+        return make_response(jsonify({'sentiment': res}))
+    
+api.add_resource(Sentiment, '/api/model/sentiment')
 api.add_resource(Get_Data, '/api/model/get_data')
 api.add_resource(Recommendation, '/api/model/recommendation')
 
