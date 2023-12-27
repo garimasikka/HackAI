@@ -1,4 +1,6 @@
 from src.agents.functions import available_products, discounted_products, similar_products
+from twilio.rest import Client
+import keys 
 
 ##################
 prod1 = {"name":"blue_navy_t-shirt", "stock_count":2}
@@ -17,3 +19,17 @@ products_list = [prod1, prod2, prod3] #prod1 and prod2 are objects of userid in 
 # available_products(wishlist_products)
 # discounted_products(products_list)
 similar_products(main_product, products_list)
+
+
+
+
+# Twilio Check
+client = Client(keys.account_sid, keys.auth_token)
+
+message = client.messages.create(
+    body="This is a trial message",
+    from_=keys.twilio_number,
+    to=keys.target_number
+)
+
+print(message.body)
