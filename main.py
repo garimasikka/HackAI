@@ -116,7 +116,7 @@ review_text = "Running very fast this laptop"
 sentiment_scores = analyze_sentiment(review_text)
 print(sentiment_scores)
 
-user_message = "Your user message here"
+user_message = "Search white sneakers"
 response = get_openai_response(user_message, OPENAI_API_KEY)
 print(response)
 
