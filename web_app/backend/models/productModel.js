@@ -13,13 +13,13 @@ const reviewSchema = new Schema({
     },
     rating: {
         type: Number,
-        required: true
     },
     comment: {
         type: String,
-        required: true
     },
-
+    sentiment: {
+        type: Boolean
+    }
 },
     {
         timestamps: true
@@ -85,6 +85,10 @@ const productSchema = new Schema({
         required: true,
         default: 0
     },
+    totPosReviews: {
+        type: Number,
+        default: 0
+    }
 },
     {
         timestamps: true
