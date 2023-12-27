@@ -37,7 +37,7 @@ function HomeScreen() {
   }
 
   const hitMl = async (word) => {
-    const res = await axios.post("http://localhost:8080/api/model/get_data", word);
+    const res = await axios.post("http://localhost:8080/api/model/get_data", {"word": word});
 
     console.log(res.data)
   }
