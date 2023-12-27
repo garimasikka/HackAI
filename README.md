@@ -76,7 +76,7 @@ A user gets notifications on phone for the following reasons:
 - When the price of a product in the wishlist gets discounted.
 - When the unavailable product in the wishlist becomes available.
 - 
-<img src="./images/rem.jpg" alt="message" width="100"/> <img src="./images/rem2.jpg" alt="message" width="100"/>
+<img src="./images/rem.jpg" alt="message" width="500"/> <img src="./images/rem2.jpg" alt="message" width="500"/>
 
 # Scope of Improvement
 
