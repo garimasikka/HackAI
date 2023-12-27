@@ -1,6 +1,10 @@
 uagents
 dotenv
+transformers
 poetry
 streamlit
 plotly
 playsound
+tensorflow==2.2.0
+torch
+openai

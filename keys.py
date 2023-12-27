@@ -9,5 +9,3 @@ auth_token = os.environ['auth_token']
 
 twilio_number = os.environ['twilio_number']
 target_number = os.environ['target_number']
-
-OPEN_API_KEY = os.environ['OPEN_API_KEY']

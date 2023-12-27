@@ -1,10 +1,15 @@
-
 import os
 import requests
 from uagents import Agent, Context, Bureau
 from src.utils.notify import send_notification
 from src.utils.subscriptions import buy_subscribed_products
 import pandas as pd
+from twilio.rest import Client
+from api import analyze_sentiment, get_openai_response
+import keys 
+
+
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
 
 agent1 = Agent(name="product_available_notifier", seed="seed")
@@ -105,6 +110,16 @@ bureau.add(agent1)
 bureau.add(agent2)
 bureau.add(agent3)
 
+
+# Example usage
+review_text = "Running very fast this laptop"
+sentiment_scores = analyze_sentiment(review_text)
+print(sentiment_scores)
+
+user_message = "Your user message here"
+response = get_openai_response(user_message, OPENAI_API_KEY)
+print(response)
+
+
 if __name__ == "__main__":
     bureau.run()
-
