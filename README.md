@@ -75,6 +75,7 @@ When you navigate to a subscription page, add the following details:
 A user gets notifications on phone for the following reasons:
 - When the price of a product in the wishlist gets discounted.
 - When the unavailable product in the wishlist becomes available.
+- 
 <img src="./images/rem.jpg" alt="message" width="10"/> <img src="./images/rem2.jpg" alt="message" width="10"/>
 
 # Scope of Improvement
