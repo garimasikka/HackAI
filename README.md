@@ -60,7 +60,7 @@ When you navigate to a product page, you'll find the following features:
 - Shopping Cart: include the product in your cart for future purchase.
 - Comments: read or add comments related to the product. This uses an ML model which classifies each tweet as either positive or negative and this information helps in the recommendation system.
 - Similar Products: It displays images with similar features.
-- 
+
 ![image](./images/prod.png)
 
 ### 3. Navigate to Subscription Page
@@ -75,6 +75,7 @@ When you navigate to a subscription page, add the following details:
 A user gets notifications on phone for the following reasons:
 - When the price of a product in the wishlist gets discounted.
 - When the unavailable product in the wishlist becomes available.
+<img src="./images/rem.jpg" alt="message" width="200"/>
 
 ![image](./images/rem.jpg)
 
