@@ -1,0 +1,36 @@
+.container{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:white;
+  width:100%;
+  padding:10%;
+  flex-wrap:wrap;
+}
+.loader{
+  width:100px;
+  height:100px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:10px 20px;
+}
+@keyframes load2{
+  50%{
+    transform:rotatez(180deg);
+    border-radius:55%;
+  }
+  100%{
+    transform:rotatez(360deg);
+  }
+}
+.loader2::before{
+  content:"";
+  color:white;
+  height:50px;
+  width:50px;
+  background:transparent;
+  border-radius:10%;
+  border:10px inset grey;
+  animation:load2 1s infinite ease-in-out;
+}
