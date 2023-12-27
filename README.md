@@ -60,16 +60,15 @@ When you navigate to a product page, you'll find the following features:
 - Shopping Cart: include the product in your cart for future purchase.
 - Comments: read or add comments related to the product. This uses an ML model which classifies each tweet as either positive or negative and this information helps in the recommendation system.
 - Similar Products: It displays images with similar features.
-- Availability Check: verify the availability of the selected product.
 ![image](./images/settings.png)
 
-### 2. Navigate to Subscription Page
+### 3. Navigate to Subscription Page
 When you navigate to a subscription page, add the following details:
 - Duration: type the number of days (integer). If you enter 7, it will buy the selected product automatically after every 7 days.
 - Product ID: type the product id (integer starting from 0) of the product that the application will buy automatically after a fixed interval of time. Due to limited time, product id has been asked instead of selecting product names or images.
 
 
-### 2. Twilio Messages
+### 4. Twilio Messages
 
 A user gets notifications on phone for the following reasons:
 - When the price of a product in the wishlist gets discounted.
