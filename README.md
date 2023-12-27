@@ -65,7 +65,7 @@ When you navigate to a product page, you'll find the following features:
 ### 3. Navigate to Subscription Page
 When you navigate to a subscription page, add the following details:
 - Duration: type the number of days (integer). If you enter 7, it will buy the selected product automatically after every 7 days.
-- Product ID: type the product id (integer starting from 0) of the product that the application will buy automatically after a fixed interval of time. Due to limited time, product id has been asked instead of selecting product names or images.
+- Product ID: type the product id of the product that the application will buy automatically after a fixed interval of time. Due to limited time, product id has been asked instead of selecting product names or images.
 ![image](./images/sub.png)
 
 ### 4. Twilio Messages
@@ -86,7 +86,7 @@ Enhancement: Extend the application to support multiple users, providing a more 
 
 ### 2. Subscription Page Enhancement:
 
-Current State: The subscription page currently requires users to input a product ID, which is an integer starting from 0.
+Current State: The subscription page currently requires users to input a product ID.
 
 Enhancement: Improve the subscription page by allowing users to add various products with a more user-friendly approach. Instead of manually entering product IDs, users should be able to choose products from a list, accompanied by images. This simplifies the selection process and enhances the visual appeal of the subscription page.
 
