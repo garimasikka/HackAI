@@ -1,3 +1,4 @@
+twilio
 uagents
 python_dotenv
 transformers
@@ -8,3 +9,4 @@ flask
 pandas 
 sentence_transformers 
 chromadb
+flask_restful
