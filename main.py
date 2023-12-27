@@ -5,7 +5,7 @@ from src.utils.notify import send_notification
 from src.utils.subscriptions import buy_subscribed_products
 import pandas as pd
 from twilio.rest import Client
-from api import analyze_sentiment, get_openai_response, top_n_products, get_recommendations
+from api import analyze_sentiment, get_openai_response #pip install openai==0.28, top_n_products, get_recommendations
 import keys 
 
 
@@ -121,15 +121,15 @@ response = get_openai_response(user_message, OPENAI_API_KEY)
 print(response)
 
 
-def load_main():
-    # Example usage of top_n_products
-    top_products = top_n_products(n=5)
-    print("Top Products:", top_products)
+# def load_main():
+#     # Example usage of top_n_products
+#     top_products = top_n_products(n=5)
+#     print("Top Products:", top_products)
 
-    # Example usage of get_recommendations
-    recommendations = get_recommendations('Brand', 'Type', 'Color', ['Comment1', 'Comment2'], n=3)
-    print("Recommendations:", recommendations)
+#     # Example usage of get_recommendations
+#     recommendations = get_recommendations('Brand', 'Type', 'Color', ['Comment1', 'Comment2'], n=3)
+#     print("Recommendations:", recommendations)
 
 if __name__ == "__main__":
     bureau.run()
-    load_main()
+    # load_main()
