@@ -84,7 +84,7 @@ Enhancement: Extend the application to support multiple users, providing a more 
 Current State: The subscription page currently requires users to input a product ID, which is an integer starting from 0.
 Enhancement: Improve the subscription page by allowing users to add various products with a more user-friendly approach. Instead of manually entering product IDs, users should be able to choose products from a list, accompanied by images. This simplifies the selection process and enhances the visual appeal of the subscription page.
 
-## Meta\
+## Meta
 Mehak Singal – 21f1006390@ds.study.iitm.ac.in
 
 Nidhish Kumar - 21f1003758@ds.study.iitm.ac.in 
