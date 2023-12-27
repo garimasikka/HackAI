@@ -1,7 +1,7 @@
 uagents
 python_dotenv
 transformers
-tensorflow==2.2.0
+tensorflow
 torch
 openai
 flask 
