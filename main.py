@@ -11,12 +11,11 @@ import keys
 
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
-
+#agents
 agent1 = Agent(name="product_available_notifier", seed="seed")
 agent2 = Agent(name="product_discounts_notifier", seed="seed")
 agent3 = Agent(name="subscribed_products_buyer", seed="seed")
 
-user_id = 0 ##change
 
 def get_data():
     try:
@@ -27,14 +26,14 @@ def get_data():
         products_list = []
 
     try:
-        response2 = requests.get("https://weak-ruby-rhinoceros-slip.cyclic.app/api/wishlists/"+user_id) 
+        response2 = requests.get("https://weak-ruby-rhinoceros-slip.cyclic.app/api/wishlists") 
         response2.raise_for_status()
         wishlist_products = response2.json()["products"]
     except:
         wishlist_products = []
     
     try:
-        response3 = requests.get("https://weak-ruby-rhinoceros-slip.cyclic.app/api/subscriptions/"+user_id) 
+        response3 = requests.get("https://weak-ruby-rhinoceros-slip.cyclic.app/api/subscriptions") 
         response3.raise_for_status()
         subscriptions = response3.json()["products"]
         return wishlist_products, products_list, subscriptions
@@ -47,6 +46,7 @@ try:
 except:
     subscription_period = float("inf")
     
+#initialize count
 @agent1.on_event("startup")
 async def initialize_storage(ctx: Context):
     ctx.storage.set("count", 0)
@@ -86,7 +86,7 @@ async def discounted_products(ctx: Context):
         if discounted_products!=[]:
             print(send_notification(discounted_products, "discounted_products"))
 
-#buy every week 
+#buy subscribed products every week 
 @agent3.on_interval(period=subscription_period)
 async def subscribed_products(ctx: Context): 
     current_count = ctx.storage.get("count")
@@ -95,6 +95,7 @@ async def subscribed_products(ctx: Context):
         _, products_list, subscriptions = get_data()
         print(buy_subscribed_products(subscriptions))
 
+#give products similar to the main product
 def similar_products(main_product, products_list):
     similar_products=[]
     color = main_product["color"]
