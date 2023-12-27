@@ -67,7 +67,7 @@ When you navigate to a product page, you'll find the following features:
 When you navigate to a subscription page, add the following details:
 - Duration: type the number of days (integer). If you enter 7, it will buy the selected product automatically after every 7 days.
 - Product ID: type the product id of the product that the application will buy automatically after a fixed interval of time. Due to limited time, product id has been asked instead of selecting product names or images.
-  
+
 ![image](./images/sub.png)
 
 ### 4. Twilio Messages
@@ -75,11 +75,10 @@ When you navigate to a subscription page, add the following details:
 A user gets notifications on phone for the following reasons:
 - When the price of a product in the wishlist gets discounted.
 - When the unavailable product in the wishlist becomes available.
+
 ![image](./images/rem.jpg)
+
 ![image](./images/rem2.jpg)
-
-![image](./images/prod.png)
-
 
 # Scope of Improvement
 
