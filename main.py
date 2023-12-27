@@ -1,3 +1,4 @@
+
 import os
 import requests
 from uagents import Agent, Context, Bureau
@@ -106,8 +107,4 @@ bureau.add(agent3)
 
 if __name__ == "__main__":
     bureau.run()
-
-
-
-
 
