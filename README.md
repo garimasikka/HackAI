@@ -46,6 +46,8 @@ To run the application, use the following commands:
 python main.py
 ```
 
+It will take a few minutes to download the models.
+
 ## Getting Started
 
 ### 1. Navigate to the Main Page
