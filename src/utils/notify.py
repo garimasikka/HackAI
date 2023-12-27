@@ -1,11 +1,30 @@
+from twilio.rest import Client
+import keys
+
 def send_notification(products_list, message_type):
+    client = Client(keys.account_sid, keys.auth_token)
+    message_body = "\n"
     if message_type == "available_products":
-        for product in products_list:
-            print(product["name"])
-        return "message sent successfully"
-    if message_type == "discounted_products":
-        for product in products_list:
-            print(product["name"], product["price"], product["discount_price"])
-        return "message sent successfully"
+        available_products = [product for product in products_list if product["stock_count"] > 0]
+        if available_products:
+            product_details = "\n".join([f'{product["name"]} (Stock: {product["stock_count"]})' for product in available_products])
+            message_body += "Hello! Here are the available products:\n" + product_details
+
+    elif message_type == "discounted_products":
+        discounted_products = [product for product in products_list if product["stock_count"] > 0 and product.get("discount_price") and product["discount_price"] < product["price"]]
+        if discounted_products:
+            product_details = "\n".join([f'{product["name"]}: Was ${product["price"]}, Now ${product["discount_price"]}' for product in discounted_products])
+            message_body += "Great news! Check out these discounted products:\n" + product_details
+
+    if message_body:
+        try:
+            message = client.messages.create(
+                body=message_body,
+                from_=keys.twilio_number,
+                to=keys.target_number
+            )
+            return "Message sent successfully: " + message.sid
+        except Exception as e:
+            return f"Error sending message: {e}"
     else:
-        return "some error occured"
+        return "No products to notify about"

@@ -4,7 +4,6 @@ from dotenv import load_dotenv, find_dotenv
 
 _ = load_dotenv(find_dotenv())
 
-
 account_sid = os.environ['account_sid']
 auth_token = os.environ['auth_token']
 

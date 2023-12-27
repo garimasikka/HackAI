@@ -1,5 +1,7 @@
 from src.agents.functions import available_products, discounted_products, similar_products
+from src.utils.notify import send_notification
 from twilio.rest import Client
+from transformers import pipeline
 import keys 
 
 ##################
@@ -22,14 +24,15 @@ similar_products(main_product, products_list)
 
 
 
+send_notification(products_list, 'available_products')
+send_notification(products_list, 'discounted_products')
 
-# Twilio Check
-client = Client(keys.account_sid, keys.auth_token)
+# ML Model
 
-message = client.messages.create(
-    body="This is a trial message",
-    from_=keys.twilio_number,
-    to=keys.target_number
+distilled_student_sentiment_classifier = pipeline(
+    model="lxyuan/distilbert-base-multilingual-cased-sentiments-student",
+    return_all_scores=True
 )
 
-print(message.body)
+distilled_student_sentiment_classifier("Running very fast this laptop") # add reviews
+
