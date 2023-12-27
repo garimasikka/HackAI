@@ -170,7 +170,7 @@ def get_recommendations(brand, product_code, color, comments, n=3):
 
 class Get_Data(Resource):
     def post(self):
-        query=request.get_json()["query"]
+        query=request.get_json()["word"]
         data = get_openai_response(query)
         return make_response(jsonify(data))
     
