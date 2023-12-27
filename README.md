@@ -1,8 +1,6 @@
-HACKAI - FETCH.AI
-
 # Personal Shopping Assistant
 
-Personal Shopping Assistant is a tool built using the Fetch.ai's uAgent library. It provides real-time tracking and alert functionality for different currency exchange rates. Users can set their base currency, select one or more foreign currencies to monitor, and set thresholds for alerts.
+The Personal Shopping Assistant is a powerful tool leveraging Fetch.ai's uAgent library, designed to enhance your shopping experience. This innovative application utilizes three deep learning models and offers a subscription service, automating the purchase of selected products at regular intervals. Additionally, it provides personalized product recommendations and classifies reviews as positive or negative, ensuring a seamless and informed shopping journey.
 
 Link to uAgent Library: 
 - [uAgents Github Repository](https://github.com/fetchai/uAgents)
