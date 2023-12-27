@@ -8,3 +8,7 @@ playsound
 tensorflow==2.2.0
 torch
 openai
+flask 
+pandas 
+sentence_transformers 
+chromadb

@@ -1,5 +1,9 @@
 from transformers import pipeline
 import openai
+import pandas as pd
+from sentence_transformers import SentenceTransformer
+from transformers import pipeline
+import chromadb
 
 def analyze_sentiment(text):
     """
@@ -101,3 +105,60 @@ def get_openai_response(user_message, OPENAI_API_KEY):
     )
 
     return response.choices[0].message.content
+
+
+
+# Initialize models
+sentiment_classifier = pipeline(
+    model="lxyuan/distilbert-base-multilingual-cased-sentiments-student",
+    return_all_scores=True
+)
+model = SentenceTransformer('sentence-transformers/LaBSE')
+client = chromadb.Client()
+
+# Load data
+def load_data():
+    products = pd.read_excel("/content/products.xlsx", header=0)
+    reviews = pd.read_excel("/content/ratings.xlsx", header=0)
+    return products, reviews
+
+# Top N products
+def top_n_products(products, reviews, n=3):
+    merged = pd.merge(products, reviews, how="left", on=['product_id'])
+    df = merged.groupby(['product_id']).agg('rating').mean()
+    return list(df.sort_values(ascending=False)[:n].index)
+
+# Sentiment score
+def score(comments):
+    s = 0
+    for comment in comments:
+        s += sentiment_classifier(comment)[0][0]['score']
+    s /= len(comments)
+    return s
+
+# Transform database
+def transform_db(products, reviews):
+    df = pd.merge(reviews, products, how="left", on=['product_id'])
+    df = df[['product_id', 'comment', 'rating', 'brand', 'product_type', 'color']]
+    df = df.groupby(['product_id']).aggregate({
+        'comment': lambda x: x,
+        'brand': lambda x: ', '.join(set(x)),
+        'product_type': lambda x: ', '.join(set(x)),
+        'color': lambda x: ', '.join(set(x))
+    })
+    df.comment = df['comment'].apply(score)
+    return df
+
+# Get recommendations
+def get_recommendations(brand, product_type, color, comments, n=3):
+    data = brand + product_type + color
+    s = 0
+    for comment in comments:
+        s += sentiment_classifier(comment)[0][0]['score']
+    s /= len(comments)
+    embedding = list(model.encode(data).astype('float')+s)
+    query_result = products_collection.query(
+        query_embeddings=embedding,
+        n_results=n
+    )
+    return list(map(int, query_result['ids'][0]))
