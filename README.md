@@ -25,10 +25,7 @@ To install the package, run the follwing command:
 ```bash
 pip install -r requirements.txt
 ```
-To run the application, use the following commands:
-```bash
-python main.py
-```
+
 Generate your API key using this link:
 
  - OpenAPI: [create API Key](https://www.alphavantage.co/support/#api-key)
@@ -42,6 +39,11 @@ auth_token= <twilio authentication token>
 twilio_number= <twilio phone number>
 target_number= <any target phone number with country code>
 OPENAI_API_KEY= <openai api>
+```
+
+To run the application, use the following commands:
+```bash
+python main.py
 ```
 
 ## Getting Started
