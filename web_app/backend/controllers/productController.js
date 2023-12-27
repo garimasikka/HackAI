@@ -1,11 +1,42 @@
 import asyncHandler from 'express-async-handler'
 import Product from '../models/productModel.js'
+import axios from "axios"
 import fs from 'fs'
+
+//function to call updated products
+const getSentiments = asyncHandler(async (req, res) => {
+    const ds = await axios.get("http://localhost:8080/api/model/sentiment");
+    const sentiments = ds.data;
+    console.log(sentiments)
+
+    // Iterate through each key-value pair and update the corresponding product
+    for (const [productId, totPosReview] of Object.entries(sentiments)) {
+        // Update the product in the database
+        try {
+            // Assuming Product is your Mongoose model
+            const updatedProduct = await Product.findOneAndUpdate(
+                { _id: productId }, // Assuming product ID is stored as _id in the Product model
+                { $set: { totPosReview: totPosReview } },
+                { new: true } // To return the updated document
+            );
+
+            // Log the updated product
+            console.log(updatedProduct);
+        } catch (error) {
+            console.error(`Error updating product ${productId}: ${error.message}`);
+        }
+    }
+
+    return 0;
+});
+
+
 
 //@desc get all products
 //@route GET /api/products
 //@access public
 const getAllProducts = asyncHandler(async (req, res) => {
+    const ds = getSentiments();
     const pageSize = 100
     const page = Number(req.query.pageNumber) || 1
     const keyword = req.query.keyword ? {
