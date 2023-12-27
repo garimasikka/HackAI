@@ -70,7 +70,21 @@ A user gets notifications on phone for the following reasons:
 - When the unavailable product in the wishlist becomes available.
 ![image](./images/exchange_rate.png)
 
-## Meta
+# Scope of Improvement
+
+While developing this application, we faced time constraints that prevented the inclusion of additional features. However, to enhance the overall user experience, the following features could be considered for future development:
+
+### 1. Multi-User Support:
+
+Current State: The application is designed to accommodate a single user.
+Enhancement: Extend the application to support multiple users, providing a more inclusive and interactive experience for a broader user base. This could involve user authentication, personalized profiles, and individualized preferences.
+
+### 2. Subscription Page Enhancement:
+
+Current State: The subscription page currently requires users to input a product ID, which is an integer starting from 0.
+Enhancement: Improve the subscription page by allowing users to add various products with a more user-friendly approach. Instead of manually entering product IDs, users should be able to choose products from a list, accompanied by images. This simplifies the selection process and enhances the visual appeal of the subscription page.
+
+## Meta\
 Mehak Singal – 21f1006390@ds.study.iitm.ac.in
 
 Nidhish Kumar - 21f1003758@ds.study.iitm.ac.in 
