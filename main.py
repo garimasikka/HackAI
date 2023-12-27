@@ -16,7 +16,7 @@ agent1 = Agent(name="product_available_notifier", seed="seed")
 agent2 = Agent(name="product_discounts_notifier", seed="seed")
 agent3 = Agent(name="subscribed_products_buyer", seed="seed")
 
-user_id = 2 ##change
+user_id = 0 ##change
 
 def get_data():
     try:
