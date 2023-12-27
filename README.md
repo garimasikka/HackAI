@@ -50,7 +50,7 @@ OPENAI_API_KEY= <openai api>
 ### 1. Navigate to the Main Page
 Here, the page provides following information regarding the products.
 - Subscribed Products: a user can opt for a subscription service where he/she can select a few products to be bought automatically after a fixed interval eg. every month, week, etc. The page shows products subscribed by the user.
-- Recommended Products: the page isplays recommended products based on past history. For a new user, it shows recommendations using star rating.
+- Recommended Products: the page displays recommended products based on past history. For a new user, it shows recommendations using star rating.
 ### 2. Navigate to any Product Page
 When you navigate to a product page, you'll find the following features:
 
@@ -62,6 +62,12 @@ When you navigate to a product page, you'll find the following features:
 - Similar Products: It displays images with similar features.
 - Availability Check: verify the availability of the selected product.
 ![image](./images/settings.png)
+
+### 2. Navigate to Subscription Page
+When you navigate to a subscription page, add the following details:
+- Duration: type the number of days (integer). If you enter 7, it will buy the selected product automatically after every 7 days.
+- Product ID: type the product id (integer starting from 0) of the product that the application will buy automatically after a fixed interval of time. Due to limited time, product id has been asked instead of selecting product names or images.
+
 
 ### 2. Twilio Messages
 
@@ -83,6 +89,10 @@ Enhancement: Extend the application to support multiple users, providing a more 
 
 Current State: The subscription page currently requires users to input a product ID, which is an integer starting from 0.
 Enhancement: Improve the subscription page by allowing users to add various products with a more user-friendly approach. Instead of manually entering product IDs, users should be able to choose products from a list, accompanied by images. This simplifies the selection process and enhances the visual appeal of the subscription page.
+
+### 3. Multiple Product Subscription:
+Current State: The subscription functionality is limited to allowing users to add only one product.
+Enhancement: Enhance the subscription feature to enable users to subscribe to multiple products. This flexibility allows users to explore and engage with a broader range of offerings, tailoring their subscriptions to diverse preferences and needs. Implementing this improvement can significantly enrich the user experience and increase the application's appeal to a wider audience.
 
 ## Meta
 Mehak Singal – 21f1006390@ds.study.iitm.ac.in
