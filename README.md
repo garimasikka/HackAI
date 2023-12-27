@@ -1,8 +1,6 @@
-HACKAI - FETCH.AI
-
 # Personal Shopping Assistant
 
-Personal Shopping Assistant is a tool built using the Fetch.ai's uAgent library. It provides real-time tracking and alert functionality for different currency exchange rates. Users can set their base currency, select one or more foreign currencies to monitor, and set thresholds for alerts.
+The Personal Shopping Assistant is a powerful tool leveraging Fetch.ai's uAgent library, designed to enhance your shopping experience. This innovative application utilizes three deep learning models and offers a subscription service, automating the purchase of selected products at regular intervals. Additionally, it provides personalized product recommendations and classifies reviews as positive or negative, ensuring a seamless and informed shopping journey.
 
 Link to uAgent Library: 
 - [uAgents Github Repository](https://github.com/fetchai/uAgents)
@@ -62,12 +60,14 @@ When you navigate to a product page, you'll find the following features:
 - Shopping Cart: include the product in your cart for future purchase.
 - Comments: read or add comments related to the product. This uses an ML model which classifies each tweet as either positive or negative and this information helps in the recommendation system.
 - Similar Products: It displays images with similar features.
+- 
 ![image](./images/prod.png)
 
 ### 3. Navigate to Subscription Page
 When you navigate to a subscription page, add the following details:
 - Duration: type the number of days (integer). If you enter 7, it will buy the selected product automatically after every 7 days.
-- Product ID: type the product id (integer starting from 0) of the product that the application will buy automatically after a fixed interval of time. Due to limited time, product id has been asked instead of selecting product names or images.
+- Product ID: type the product id of the product that the application will buy automatically after a fixed interval of time. Due to limited time, product id has been asked instead of selecting product names or images.
+  
 ![image](./images/sub.png)
 
 ### 4. Twilio Messages
@@ -77,6 +77,9 @@ A user gets notifications on phone for the following reasons:
 - When the unavailable product in the wishlist becomes available.
 ![image](./images/rem.jpg)
 ![image](./images/rem2.jpg)
+
+![image](./images/prod.png)
+
 
 # Scope of Improvement
 
@@ -90,7 +93,7 @@ Enhancement: Extend the application to support multiple users, providing a more 
 
 ### 2. Subscription Page Enhancement:
 
-Current State: The subscription page currently requires users to input a product ID, which is an integer starting from 0.
+Current State: The subscription page currently requires users to input a product ID.
 
 Enhancement: Improve the subscription page by allowing users to add various products with a more user-friendly approach. Instead of manually entering product IDs, users should be able to choose products from a list, accompanied by images. This simplifies the selection process and enhances the visual appeal of the subscription page.
 
