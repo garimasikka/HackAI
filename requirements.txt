@@ -1,4 +1,5 @@
 uagents
+dotenv
 poetry
 streamlit
 plotly
