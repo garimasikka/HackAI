@@ -22,27 +22,30 @@ def get_data():
     try:
         response1 = requests.get("https://weak-ruby-rhinoceros-slip.cyclic.app/api/products")
         response1.raise_for_status()
-        products_list = response1.json() ["products"]
+        products_list = response1.json()["products"]
+    except:
+        products_list = []
 
-        wishlist_products = response1.json()["products"] ##change immediately!!!!!!!!
-        subscriptions = response1.json()["products"] ##change immediately!!!!!!!!
-
-        # response2 = requests.get("https://weak-ruby-rhinoceros-slip.cyclic.app/api/wishlists/"+user_id) 
-        # response2.raise_for_status()
-        # wishlist_products = response2.json()
-
-        # response3 = requests.get("https://weak-ruby-rhinoceros-slip.cyclic.app/api/subscriptions/"+user_id) 
-        # response3.raise_for_status()
-        # subscriptions = response3.json()
+    try:
+        response2 = requests.get("https://weak-ruby-rhinoceros-slip.cyclic.app/api/wishlists/"+user_id) 
+        response2.raise_for_status()
+        wishlist_products = response2.json()["products"]
+    except:
+        wishlist_products = []
+    
+    try:
+        response3 = requests.get("https://weak-ruby-rhinoceros-slip.cyclic.app/api/subscriptions/"+user_id) 
+        response3.raise_for_status()
+        subscriptions = response3.json()["products"]
         return wishlist_products, products_list, subscriptions
     except:
-        return "some error occured"
+        subscriptions = []
 
-
- 
-_, _, subscriptions = get_data()
-subscription_period = 2 #change!!!
-# subscription_period = int(subscriptions["duration"])*24*3600 ######ADD!
+try:
+    _, _, subscriptions = get_data()
+    subscription_period = int(subscriptions["duration"])*24*3600 
+except:
+    subscription_period = float("inf")
     
 @agent1.on_event("startup")
 async def initialize_storage(ctx: Context):
