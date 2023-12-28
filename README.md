@@ -68,7 +68,7 @@ npm run dev
 ```
 
 
-It will take a few minutes to download the models.
+It will take a few minutes to download all models.
 
 ## Getting Started
 
