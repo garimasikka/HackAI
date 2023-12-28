@@ -217,4 +217,4 @@ const createProductReview = asyncHandler(async (req, res) => {
     }
 })
 
-export { getAllProducts, getProduct, getTopProducts, deleteProduct, createProduct, updateProduct, createProductReview, getRecommendation }
+export { getAllProducts, getProduct, getTopProducts, deleteProduct, createProduct, updateProduct, createProductReview }
