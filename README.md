@@ -147,6 +147,10 @@ This project utilizes MongoDB with six distinct schemas:
 
 These schemas organize and store data efficiently, supporting various aspects of the application such as user management, product details, reviews, orders, subscriptions, and wishlists.
 
+## Database Overview
+
+Demo Video Link: https://drive.google.com/drive/folders/1mGlAykozHCC0eMuR_KEvWDSA8p4KETu5?usp=sharing
+
 # Scope of Improvement
 
 While developing this application, we faced time constraints that prevented the inclusion of additional features. However, to enhance the overall user experience, the following features could be considered for future development:
