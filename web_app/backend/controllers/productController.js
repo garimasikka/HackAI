@@ -4,19 +4,22 @@ import axios from "axios"
 import fs from 'fs'
 
 //function to call updated products
-const getSentiments = asyncHandler(async (req, res) => {
+const getSentiments = asyncHandler(async () => {
     const ds = await axios.get("http://localhost:8080/api/model/sentiment");
     const sentiments = ds.data;
     console.log(sentiments)
 
-    // Iterate through each key-value pair and update the corresponding product
-    for (const [productId, totPosReview] of Object.entries(sentiments)) {
+    // Iterate through each object and update the corresponding product
+    for (const sentimentObj of sentiments) {
+        const productId = Object.keys(sentimentObj)[0]; // Extract the product ID
+        const totPosReview = sentimentObj[productId]; // Extract the totPosReview value
+
         // Update the product in the database
         try {
             // Assuming Product is your Mongoose model
             const updatedProduct = await Product.findOneAndUpdate(
                 { _id: productId }, // Assuming product ID is stored as _id in the Product model
-                { $set: { totPosReviews: totPosReview } },
+                { $set: { totPosReview: totPosReview } },
                 { new: true } // To return the updated document
             );
 
@@ -27,7 +30,6 @@ const getSentiments = asyncHandler(async (req, res) => {
         }
     }
 
-    return 0;
 });
 
 
