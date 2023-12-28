@@ -107,7 +107,7 @@ Use the search bar to find products by entering specific keywords. The system us
 
 Users can contribute reviews for products, assigning a rating on a scale of 1 to 5 stars. The system employs a machine learning model to analyze and classify reviews as positive, negative, or neutral. Additionally, it aggregates the total count of positive reviews for each product, providing valuable insights into customer satisfaction. This feature enhances the user experience by fostering transparency and aiding in informed purchasing decisions.
 
-![image](./images/reviews.png)
+![image](./images/review.png)
 
 ### 6. Twilio Messages
 
