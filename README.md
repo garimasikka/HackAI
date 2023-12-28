@@ -42,11 +42,30 @@ OPENAI_API_KEY= <openai api>
 ```
 The target number in .env file has to be the same as the twilio number that was used for signup.
 
-To run the application, use the following commands:
+To run the application, use the following commands in different terminals:
+terminal 1:
 ```bash
-pip install openai==0.28
+cd ./web_app
+npm i
+```
+terminal 2:
+```bash
+cd web_app/frontend
+npm i
+```
+terminal 3:
+```bash
 python main.py
 ```
+terminal 4:
+```bash
+python api.py
+```
+terminal 5:
+```bash
+npm run dev
+```
+
 
 It will take a few minutes to download the models.
 
