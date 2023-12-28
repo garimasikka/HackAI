@@ -86,6 +86,28 @@ const getTopProducts = asyncHandler(async (req, res) => {
     }
 })
 
+const getRecommendation = asyncHandler(async (req, res) => {
+    try {
+        // Assuming the recommendation endpoint returns an array of product IDs
+        const recommendationResponse = await axios.get("http://localhost:8080/api/model/recommendation");
+        const recommendedProductIds = recommendationResponse.data;
+
+        // Fetch products from the Product model based on the recommended IDs
+        const recommendedProducts = await Product.find({ _id: { $in: recommendedProductIds } });
+
+        // You can now use recommendedProducts as needed
+        console.log(recommendedProducts);
+
+        // Return the array of recommended products in the response
+        res.json(recommendedProducts);
+    } catch (error) {
+        console.error(`Error fetching recommendations: ${error.message}`);
+        // Handle the error and return an appropriate response
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 //@desc delete product
 //@route DELETE /api/products/:id
 //@access private/admin
@@ -197,4 +219,4 @@ const createProductReview = asyncHandler(async (req, res) => {
     }
 })
 
-export { getAllProducts, getProduct, getTopProducts, deleteProduct, createProduct, updateProduct, createProductReview }
+export { getAllProducts, getProduct, getTopProducts, deleteProduct, createProduct, updateProduct, createProductReview, getRecommendation }
