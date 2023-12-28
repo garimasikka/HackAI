@@ -7,7 +7,7 @@ router.route('/').get(getAllProducts).post(protect, isAdmin, createProduct)
 
 router.route('/top').get(getTopProducts)
 
-router.route('/get_recommendation').get(getRecommendation)
+// router.route('/get_recommendation').get(getRecommendation)
 
 router.route('/:id').get(getProduct).delete(protect, isAdmin, deleteProduct).put(protect, isAdmin, updateProduct)
 
