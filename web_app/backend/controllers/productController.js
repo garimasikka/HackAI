@@ -16,7 +16,7 @@ const getSentiments = asyncHandler(async (req, res) => {
             // Assuming Product is your Mongoose model
             const updatedProduct = await Product.findOneAndUpdate(
                 { _id: productId }, // Assuming product ID is stored as _id in the Product model
-                { $set: { totPosReview: totPosReview } },
+                { $set: { totPosReviews: totPosReview } },
                 { new: true } // To return the updated document
             );
 
