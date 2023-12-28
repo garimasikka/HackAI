@@ -122,6 +122,7 @@ A user gets notifications on phone for the following reasons:
 To access the admin features of the application, log in using the following credentials:
 
 Email ID: admin@admin.com
+
 Password: 123456
 
 Once logged in as an admin, you have the authority to:
@@ -132,6 +133,7 @@ Once logged in as an admin, you have the authority to:
   
 These capabilities empower administrators to efficiently manage the product inventory and maintain the application's content.
 
+![image](./images/admin.png)
 
 # Scope of Improvement
 
