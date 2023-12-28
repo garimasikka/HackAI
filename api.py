@@ -50,7 +50,10 @@ def sentiment_analysis():
                 if pred_sentiment=="positive":
                     total_pos[product["_id"]]+=1
                 all_reviews[product["_id"]].append(pred_sentiment)
-        return total_pos
+        total_pos_list = []
+        for key in total_pos.keys():
+            total_pos_list.append({key:total_pos[key]})
+        return total_pos_list
     
 def get_openai_response(user_message, OPENAI_API_KEY=OPENAI_API_KEY):
     """
@@ -252,7 +255,7 @@ class Recommendation(Resource):
 class Sentiment(Resource):
     def get(self):
         res = sentiment_analysis()
-        return make_response(jsonify({'sentiment': res}))
+        return make_response(jsonify(res))
     
 api.add_resource(Sentiment, '/api/model/sentiment')
 api.add_resource(Get_Data, '/api/model/get_data')
