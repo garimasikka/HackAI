@@ -38,17 +38,17 @@ const getSentiments = asyncHandler(async (req, res) => {
 const getAllProducts = asyncHandler(async (req, res) => {
     const ds = getSentiments();
     const pageSize = 100
+    console.log(req.query.keyword)
     const page = Number(req.query.pageNumber) || 1
     const keyword = req.query.keyword ? {
-        name: {
+        product_type: {
             $regex: req.query.keyword,
             $options: 'i'
         }
     } : {}
-
     const countDocuments = await Product.count({ ...keyword })
     const products = await Product.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1))
-
+    console.log(products)
     if (products) {
         res.status(200).json({ products, page, pages: Math.ceil(countDocuments / pageSize) })
     } else {

@@ -39,14 +39,18 @@ function HomeScreen() {
   const hitMl = async (word) => {
     const res = await axios.post("http://localhost:8080/api/model/get_data", {"word": word});
 
-    console.log(res.data)
+    const gender = res.data.GENDER ? res.data.GENDER : ""
+    const size = res.data.PRODUCT_SIZE ? res.data.PRODUCT_SIZE : ""
+    const type = res.data.PRODUCT_TYPE !== 0 ? res.data.PRODUCT_TYPE : 0
+    const keyword = gender + size + type
+    return keyword
   }
 
-  const submitHandle = (e) => {
+  const submitHandle = async (e) => {
     e.preventDefault()
     if (keyword.trim()) {
-      hitMl(keyword);
-      navigate(`/search/${keyword}`)
+      const key = await hitMl(keyword);
+      navigate(`/search/${key}`)
     } else {
       navigate('/')
     }

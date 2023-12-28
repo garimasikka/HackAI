@@ -1,3 +1,4 @@
+import json
 from transformers import pipeline
 from openai import OpenAI
 import pandas as pd
@@ -5,6 +6,7 @@ from sentence_transformers import SentenceTransformer
 from transformers import pipeline
 import chromadb
 from flask import Flask, jsonify, request, make_response
+from flask_cors import CORS
 from flask_restful import Api, Resource
 import os
 
@@ -12,6 +14,7 @@ from main import get_data
 
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 def analyze_sentiment(text):
@@ -32,7 +35,6 @@ def sentiment_analysis():
     total_pos = {}
     if get_data():
         _, products_list, _ = get_data()
-        print(products_list)
         for product in products_list:
             total_pos[product["_id"]] = 0
             all_reviews[product["_id"]] = []
@@ -47,7 +49,6 @@ def sentiment_analysis():
                 if pred_sentiment=="positive":
                     total_pos[product["_id"]]+=1
                 all_reviews[product["_id"]].append(pred_sentiment)
-        print(total_pos)
         return total_pos
     
 def get_openai_response(user_message, OPENAI_API_KEY=OPENAI_API_KEY):
@@ -237,7 +238,8 @@ class Get_Data(Resource):
     def post(self):
         query=request.get_json()["word"]
         data = get_openai_response(query)
-        return make_response(jsonify(data))
+        data = json.loads(data)
+        return make_response(data)
     
 class Recommendation(Resource):
     def post(self):
