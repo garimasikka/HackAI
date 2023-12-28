@@ -79,9 +79,16 @@ When you navigate to a subscription page, add the following details:
 ### 4. Product Search
 
 Use the search bar to find products by entering specific keywords. The system uses GPT 3.5 to display a list of products related to your search. 
+
 ![image](./images/jeans.png)
 
-### 5. Twilio Messages
+### 5. Product Reviews
+
+Users can contribute reviews for products, assigning a rating on a scale of 1 to 5 stars. The system employs a machine learning model to analyze and classify reviews as positive, negative, or neutral. Additionally, it aggregates the total count of positive reviews for each product, providing valuable insights into customer satisfaction. This feature enhances the user experience by fostering transparency and aiding in informed purchasing decisions.
+
+![image](./images/reviews.png)
+
+### 6. Twilio Messages
 
 A user gets notifications on phone for the following reasons:
 - When the price of a product in the wishlist gets discounted.
