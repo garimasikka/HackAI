@@ -138,28 +138,17 @@ These capabilities empower administrators to efficiently manage the product inve
 ### Database Overview
 This project utilizes MongoDB with six distinct schemas:
 
-**User**:
+**User**: name, email id, password, role
 
-Fields: name, email id, password, role
+**Products**: name, description, image, brand, product type, color, price, discounted price, stock count
 
-**Products**:
+**Review**: product comments, ratings
 
-Fields: name, description, image, brand, product type, color, price, discounted price, stock count
+**Orders**: payment method, address
 
-**Review**:
+**Subscription**: products selected for subscription service, duration in days
 
-Fields: product comments, ratings
-
-**Orders**:
-
-Fields: payment method, address
-
-**Subscription**:
-
-Fields: products selected for subscription service, duration in days
-Wishlist:
-
-Fields: products added to the wishlist by a user
+**Wishlist**: products added to the wishlist by a user
 
 These schemas organize and store data efficiently, supporting various aspects of the application such as user management, product details, reviews, orders, subscriptions, and wishlists.
 
