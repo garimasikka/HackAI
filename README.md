@@ -117,7 +117,6 @@ A user gets notifications on phone for the following reasons:
  
 <img src="./images/rem.jpg" alt="message" width="200"/> <img src="./images/rem2.jpg" alt="message" width="200"/>
 
-
 ## Admin User
 To access the admin features of the application, log in using the following credentials:
 
@@ -147,7 +146,7 @@ This project utilizes MongoDB with six distinct schemas:
 
 These schemas organize and store data efficiently, supporting various aspects of the application such as user management, product details, reviews, orders, subscriptions, and wishlists.
 
-## Database Overview
+## Demo
 
 Demo Video Link: https://drive.google.com/drive/folders/1mGlAykozHCC0eMuR_KEvWDSA8p4KETu5?usp=sharing
 
