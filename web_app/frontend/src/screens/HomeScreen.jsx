@@ -15,6 +15,7 @@ import axios from 'axios'
 
 function HomeScreen() {
   const { products, topProducts, isError, isLoading, message, pages, page } = useSelector(state => state.products)
+  const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [keyword, setKeyword] = useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -22,9 +23,30 @@ function HomeScreen() {
   const searchWord = params.keyword || ''
   const pageNumber = params.pageNumber || 1
 
+  const fetchRecommendation = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/products/get_recommendation")
+      console.log(res.data)
+      setRecommendedProducts(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const hitMl = async (word) => {
+    const res = await axios.post("http://localhost:8080/api/model/get_data", { "word": word });
+
+    const gender = res.data.GENDER ? res.data.GENDER : ""
+    const size = res.data.PRODUCT_SIZE ? res.data.PRODUCT_SIZE : ""
+    const type = res.data.PRODUCT_TYPE !== 0 ? res.data.PRODUCT_TYPE : 0
+    const keyword = gender + size + type
+    return keyword
+  }
+
   useEffect(() => {
     dispatch(getAllProducts({ searchWord, pageNumber }))
     dispatch(getTopProducts())
+    fetchRecommendation()
 
     if (isError) {
       toast.error(message)
@@ -34,16 +56,6 @@ function HomeScreen() {
 
   if (isLoading) {
     return <Loader />
-  }
-
-  const hitMl = async (word) => {
-    const res = await axios.post("http://localhost:8080/api/model/get_data", {"word": word});
-
-    const gender = res.data.GENDER ? res.data.GENDER : ""
-    const size = res.data.PRODUCT_SIZE ? res.data.PRODUCT_SIZE : ""
-    const type = res.data.PRODUCT_TYPE !== 0 ? res.data.PRODUCT_TYPE : 0
-    const keyword = gender + size + type
-    return keyword
   }
 
   const submitHandle = async (e) => {
@@ -95,6 +107,15 @@ function HomeScreen() {
       </div>
       <div className='w-full flex flex justify-center mt-6'>
         <PaginationComponent pages={pages} page={page} keyword={searchWord} />
+      </div>
+
+      {/* new section */}
+
+      <h1 className='text-4xl text-center pt-2 text-black'>RECOMMENDED PRODUCTS</h1>
+      <div className='flex flex-wrap justify-center pt-5 mx-5'>
+        {recommendedProducts.map((product) => (
+          <Product key={product._id} product={product} />
+        ))}
       </div>
     </>
   )
