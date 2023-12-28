@@ -23,15 +23,15 @@ function HomeScreen() {
   const searchWord = params.keyword || ''
   const pageNumber = params.pageNumber || 1
 
-  const fetchRecommendation = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/api/products/get_recommendation")
-      console.log(res.data)
-      setRecommendedProducts(res.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // const fetchRecommendation = async () => {
+  //   try {
+  //     const res = await axios.get("http://localhost:5000/api/products/get_recommendation")
+  //     console.log(res.data)
+  //     setRecommendedProducts(res.data)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   const hitMl = async (word) => {
     const res = await axios.post("http://localhost:8080/api/model/get_data", { "word": word });
@@ -46,7 +46,7 @@ function HomeScreen() {
   useEffect(() => {
     dispatch(getAllProducts({ searchWord, pageNumber }))
     dispatch(getTopProducts())
-    fetchRecommendation()
+    // fetchRecommendation()
 
     if (isError) {
       toast.error(message)
@@ -109,14 +109,6 @@ function HomeScreen() {
         <PaginationComponent pages={pages} page={page} keyword={searchWord} />
       </div>
 
-      {/* new section */}
-
-      <h1 className='text-4xl text-center pt-2 text-black'>RECOMMENDED PRODUCTS</h1>
-      <div className='flex flex-wrap justify-center pt-5 mx-5'>
-        {recommendedProducts.map((product) => (
-          <Product key={product._id} product={product} />
-        ))}
-      </div>
     </>
   )
 }
