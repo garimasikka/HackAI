@@ -4,7 +4,7 @@ python_dotenv
 transformers
 tensorflow
 torch
-openai
+openai==0.28
 flask 
 pandas 
 sentence_transformers 
