@@ -76,7 +76,12 @@ When you navigate to a subscription page, add the following details:
 
 ![image](./images/sub.png)
 
-### 4. Twilio Messages
+### 4. Product Search
+
+Use the search bar to find products by entering specific keywords. The system uses GPT 3.5 to display a list of products related to your search. 
+![image](./images/jean.png)
+
+### 5. Twilio Messages
 
 A user gets notifications on phone for the following reasons:
 - When the price of a product in the wishlist gets discounted.
