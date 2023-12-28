@@ -71,6 +71,7 @@ npm run dev
 It will take a few minutes to download all models.
 
 ## Getting Started
+To begin using the application, please sign up or log in. 
 
 ### 1. Navigate to the Main Page
 Here, the page provides following information regarding the products.
@@ -115,6 +116,22 @@ A user gets notifications on phone for the following reasons:
 - When the unavailable product in the wishlist becomes available.
  
 <img src="./images/rem.jpg" alt="message" width="200"/> <img src="./images/rem2.jpg" alt="message" width="200"/>
+
+
+## Admin User
+To access the admin features of the application, log in using the following credentials:
+
+Email ID: admin@admin.com
+Password: 123456
+
+Once logged in as an admin, you have the authority to:
+
+- Create new products
+- Delete existing products
+- Edit product details
+  
+These capabilities empower administrators to efficiently manage the product inventory and maintain the application's content.
+
 
 # Scope of Improvement
 
