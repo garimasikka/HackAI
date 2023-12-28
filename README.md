@@ -10,11 +10,13 @@ Link to uAgent Library:
 | Features   | Description  |
 | ------------- | ------------- |
 |  Product Search  |Easily find products by typing in the search bar. The app provides a list of products based on your search text  |
-| Product Recommendations  | Receive personalized product recommendations based on your preferences and purchase history. |
+| Product Recommendations*  | Receive personalized product recommendations based on your preferences and purchase history. |
 | Similar Products  | Discover similar products to the ones you're interested in, helping you make informed choices. |
 | Automated Purchases  | Use a subscription service where selected products are automatically purchased at specified intervals, making your shopping hassle-free. |
 | Product Availability  | Displays if the product is in stock. |
 | Positive/Negative Reviews  | Gain insights into product reviews and ratings, distinguishing between positive and negative feedback. |
+
+*Tried to implement product recommendations feature but couldn't due to time limitations.
 
 ## Installation
 To clone the repository, run the following:
