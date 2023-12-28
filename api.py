@@ -27,7 +27,8 @@ def analyze_sentiment(text):
         model="lxyuan/distilbert-base-multilingual-cased-sentiments-student",
         return_all_scores=True
     )
-    prediction = sentiment_classifier(text)
+    prediction = sentiment_classifier(text['comment'])
+    print(prediction[0])
     return prediction[0]
 
 def sentiment_analysis(): 
