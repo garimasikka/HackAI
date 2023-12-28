@@ -7,7 +7,6 @@ import fs from 'fs'
 const getSentiments = asyncHandler(async () => {
     const ds = await axios.get("http://localhost:8080/api/model/sentiment");
     const sentiments = ds.data;
-    console.log(sentiments)
 
     // Iterate through each object and update the corresponding product
     for (const sentimentObj of sentiments) {
@@ -19,12 +18,11 @@ const getSentiments = asyncHandler(async () => {
             // Assuming Product is your Mongoose model
             const updatedProduct = await Product.findOneAndUpdate(
                 { _id: productId }, // Assuming product ID is stored as _id in the Product model
-                { $set: { totPosReview: totPosReview } },
+                { $set: { totPosReviews: totPosReview } },
                 { new: true } // To return the updated document
             );
 
             // Log the updated product
-            console.log(updatedProduct);
         } catch (error) {
             console.error(`Error updating product ${productId}: ${error.message}`);
         }

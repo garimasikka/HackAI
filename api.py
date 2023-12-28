@@ -1,4 +1,5 @@
 import json
+import requests
 from transformers import pipeline
 from openai import OpenAI
 import pandas as pd
@@ -152,8 +153,23 @@ client = chromadb.Client()
 
 # Load data
 def load_data():
-    products = pd.read_excel("./products.xlsx", header=0)
-    reviews = pd.read_excel("./ratings.xlsx", header=0)
+
+    products_dict = {"product_id":[], "name":[], "description":[], "image":[], "brand":[], "product_code":[], "color":[], "price":[]}
+    s = requests.get("https://weak-ruby-rhinoceros-slip.cyclic.app/api/products").json()
+    
+    for i in s["products"]:
+
+        products_dict["product_id"].append(i["_id"])
+        products_dict["name"].append(i["name"])
+        products_dict["description"].append(i["description"])
+        products_dict["image"].append(i["image"])
+        products_dict["brand"].append(i["brand"])
+        products_dict["product_code"].append(i["product_type"])
+        products_dict["color"].append(i["color"])
+        products_dict["price"].append(i["price"])
+
+    products = pd.DataFrame(products_dict)
+    products = products.set_index('product_id')
     return products, reviews
 
 # Top N products
