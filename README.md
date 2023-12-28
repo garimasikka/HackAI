@@ -79,7 +79,7 @@ When you navigate to a subscription page, add the following details:
 ### 4. Product Search
 
 Use the search bar to find products by entering specific keywords. The system uses GPT 3.5 to display a list of products related to your search. 
-![image](./images/jean.png)
+![image](./images/jeans.png)
 
 ### 5. Twilio Messages
 
